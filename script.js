@@ -1,56 +1,45 @@
-const form = document.getElementById('registration-Form');//select form by ID
 
-const feedbackDiv = document.getElementById('form-feedback')
-
+document.addEventListener("DOMContentLoaded", function(){
+    const form = document.getElementById('registration-Form');//select form by ID
+    
+    const feedbackDiv = document.getElementById('form-feedback')
+    
     form.addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent form submission
+        event.preventDefault(); // Prevent form submission
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const isValid = true;
+        const messages = []
 
+        
       // Validate username
-      const usernameisValid = document.getElementById('username');
-      const messages = document.getElementById('usernameError');
-      if (usernameInput.value.length < 3) {
-        usernameError.textContent = 'Username must be at least 3 characters long.';
-        return;
-      } else {
-        usernameisValid.textContent = '';
+
+      if (username.length < 3) {
+        isValid = false
+        messages.push("Username must be at least 3 characters long.")
       }
 
-
-      // Validate email and must contain @ '.'
-      const emailisValid = document.getElementById('email');
-      const message = document.getElementById('emailError');
-      if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(emailInput.value)) {
-        emailError.textContent = 'Please enter a valid email address.';
-        return;
-      } else {
-        emailisValid.textContent = '';
+      if (password.length < 8) {
+        isValid =false
+        messages.push("Password must be at least 8 characters long.");
       }
 
-      // Validate password
-      const passwordisValid = document.getElementById('password');
-      const passwordError = document.getElementById('passwordError');
-      if (passwordInput.value.length < 8) {
-        passwordError.textContent = 'Password must be at least 8 characters long.';
-        return;
-      } else {
-        passwordisValid.textContent = '';
+      if (!email.includes("@")|| !email.includes(".")) {
+        isValid =false
+        messages.push("Please enter a valid email address.");
       }
+        feedbackDiv.style.display = "block" 
 
-      function checkAnswer () {
-        const feedbackDiv = document.querySelector('form-feedback']:checked')?.value;
+      if (isValid) {
+        feedbackDiv.textContent = "Registration successful"
+        feedbackDiv.style.color = "#28a745"
+      } else {
+        feedbackDiv.textContent = messages.join("<br>")
+        feedbackDiv.style.color = "#dc3545"
+      }
+    })
     
-        if (!userAnswer) {
-            document.getElementById("form-feedback").textContent = "Registration successful! Style.color = #28a745";
-            return; 
-        }
 
-    
-        else {
-            document.getElementById("form-feedback").textContent = "That's incorrect. Try again! style.color = #dc3545";
-        }
-    }
-    //Add an event listener to the Submit Answer button 
-    //document.getElementById("submit-answer").addEventListener("click", checkAnswer);
-    
-    const buttonCall = document.getElementsByTagName("submit");
-    buttonCall.addEventListener("click", form);
+
+})

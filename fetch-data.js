@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const response = await fetch(apiUrl);
     const users = await response.json();
     dataContainer.innerHTML = " ";
-    const userList = document.createElement("li");
+    const userList = document.createElement("ul");
     
     users.forEach(user => {
         const listItem = document.createElement("li")

@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     catch (errror) {
         dataContainer.innerText = " ";
-        dataContainer.textContent = "failed to load user data";
+        dataContainer.textContent = "Failed to load user data";
     }
 }
     fetchUserData();
